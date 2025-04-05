@@ -1,0 +1,18 @@
+/my-express-app
+│── /node_modules       # Folder dependensi (otomatis dari npm)
+│── /src                # Folder utama kode aplikasi
+│   │── /config         # Konfigurasi database, environment, dll.
+│   │── /controllers    # Logika bisnis aplikasi (handler request)
+│   │── /middlewares    # Middleware seperti auth, logger, dll.
+│   │── /models         # Model database (jika menggunakan ORM seperti Sequelize/Mongoose)
+│   │── /routes         # Rute aplikasi (API endpoints)
+│   │── /services       # Fungsi helper dan logika tambahan
+│   │── /utils          # Fungsi utilitas umum
+│   │── /views          # Jika menggunakan template engine (EJS/Pug)
+│   │── app.js          # File utama untuk menginisialisasi Express
+│   │── server.js       # Menjalankan server Express
+│── /public             # Statis file (CSS, JS, gambar)
+│── .env                # Variabel lingkungan (database, API key, dll.)
+│── .gitignore          # File yang harus diabaikan oleh Git
+│── package.json        # Informasi proyek dan dependensi
+│── README.md           # Dokumentasi proyek
