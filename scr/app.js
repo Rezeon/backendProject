@@ -10,11 +10,10 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true }));
 
-const auth = require('./middlewares/middleware')
 const movie = require('./routes/movie')
-const admin = require('./routes/user')
+const user = require('./routes/user')
 
 app.use('/movies', movie)
-app.use('/admin',auth, admin)
+app.use('/', user)
 
 module.exports = app;

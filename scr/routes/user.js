@@ -1,18 +1,26 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
+const userController = require('../controllers/userController');
+const auth = require('../middlewares/middleware')
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        const uploadPath = 'uploads/';
+        if (!fs.existsSync(uploadPath)) {
+            fs.mkdirSync(uploadPath); 
+        }
+        cb(null, uploadPath);
+    },
+    filename: function(req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname);
+    }
+});
+const upload = multer({ storage });
 
-router.get('/', (req,res) => {
-    res.send("hello ren")
-})
-router.get('/:id', (req,res) => {
-    const id = req.params.id
-    res.send(`ini id admin ${id}`)
-})
-router.get('/home', (req,res) => {
-    res.send("welcome admin")
-})
-router.get('/about', (req,res) => {
-    res.send("ini admin")
-})
+router.post('/register', userController.registerUser)
+router.post('/login', userController.loginUser)
+router.get('/verify-email', auth, userController.verifyEmail)
+router.get('/movie1', auth, userController.daftarSaya)
+router.post('/upload', auth, upload.single('photo'), userController.uploadFoto)
 
 module.exports = router;
